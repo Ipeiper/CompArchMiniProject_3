@@ -79,7 +79,6 @@ module controller #(
         endcase
     end
 
-    //
     always_comb begin
         next_transmit_phase = READ_CH_VALS;
         if (state == TRANSMIT_FRAME) begin
@@ -96,7 +95,7 @@ module controller #(
         end
     end
 
-    //increases cell_X
+    //increases cell_X and cell_y
     always_ff @(posedge clk) begin
         if ((state == TRANSMIT_FRAME) && transmit_pixel_done) begin
             if (cell_y == HEIGHT-1 && cell_x == WIDTH-1) begin
@@ -113,7 +112,6 @@ module controller #(
             end
         end
     end
-
 
     always_ff @(posedge clk) begin
         if (transmit_phase == TRANSMIT_PIXEL) begin

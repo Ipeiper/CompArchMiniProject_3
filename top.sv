@@ -24,8 +24,6 @@ localparam DEFMEMSTATE = 0;
 
 //pixel data values for RGB
 logic [23:0] led_data;
-//position for the current led/ cell being used in the format x(4), y(x)
-logic [$clog2(WIDTH)+$clog2(HEIGHT)-1:0] pos_led= '0;
 
 //matrix variables
 //red
@@ -226,7 +224,6 @@ datafetch #(
     .read_address_b(read_address_b_m),
     .led_data(led_data)
 );
-
 
 //shift register
 always_ff @(posedge clk) begin

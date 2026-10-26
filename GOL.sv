@@ -31,14 +31,17 @@ logic [1:0] mem_num= 2'b00;
 logic [$clog2(HEIGHT)-1:0] address_1 = 0;
 logic [$clog2(HEIGHT)-1:0] address_2 = 0;
 logic [$clog2(HEIGHT)-1:0] address_3 = 0;
+
 //The horizontal index for each of the three coloums numbered from left to right
 logic [$clog2(WIDTH)-1:0] index_1 = 0;
 logic [$clog2(WIDTH)-1:0] index_2 = 0;
 logic [$clog2(WIDTH)-1:0] index_3 = 0;
+
 //the data stored within the memory unit as the addresses of the same number
 logic [WIDTH-1:0] data_1 = 0;
 logic [WIDTH-1:0] data_2 = 0;
 logic [WIDTH-1:0] data_3 = 0;
+
 //CALCULATION VARIABLES
 //cell_status: represents the state of the current cell, dead or alive
 logic [0:0] cell_status = 0;
@@ -80,8 +83,10 @@ endfunction
 //this creates the row as we go along
 logic [WIDTH-1:0] row_base;
 logic [WIDTH-1:0] row_new; 
+
 // if cell_x is 0, then its a new row and is therefore 0
 assign row_base = (cell_x == 0) ? 0 : data_out;
+
 //make the new row be the base row with the new value added in using replace_cell_cur
 assign row_new = replace_cell_cur(row_base,cell_x,cell_out);
 

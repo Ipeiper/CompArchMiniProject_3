@@ -23,13 +23,20 @@ module memswitch #(
     // 0 means  A is read, B is write
     // 1 means  B is read, A is write
     logic [0:0]mem_state = DEFMEMSTATE;
-    //memory unit A
-    //address and data
+    
+    //memory unit A address and data
     logic [WIDTH-1:0]mem_a_read_data_1;
     logic [WIDTH-1:0]mem_a_read_data_2;
     // toggles whether the memory unit is doing reading or writing
     logic [0:0]mem_a_write_enable;
-    //memory unit itself
+
+    //memory unit b address and data
+    logic [WIDTH-1:0]mem_b_read_data_1;
+    logic [WIDTH-1:0]mem_b_read_data_2;
+    // toggles whether the memory unit is doing reading or writing
+    logic [0:0]mem_b_write_enable;
+    
+    //memory unit A
     gmem  #(
         .INIT_FILE      (INIT_FILE_A),
         .WIDTH          (WIDTH),
@@ -44,13 +51,8 @@ module memswitch #(
         .write_address    (write_address),
         .write_data       (write_data)
     );
-    //memory unit b
-    //address and data
-    logic [WIDTH-1:0]mem_b_read_data_1;
-    logic [WIDTH-1:0]mem_b_read_data_2;
-    // toggles whether the memory unit is doing reading or writing
-    logic [0:0]mem_b_write_enable;
-    //unit itself
+    
+    //memory unit B
     gmem  #(
         .INIT_FILE      (INIT_FILE_B),
         .WIDTH          (WIDTH),
